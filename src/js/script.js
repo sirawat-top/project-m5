@@ -1,22 +1,24 @@
 const getcarousel = async ()=>{
     try{
-        const response = await axios.get("https://6102d7aa79ed680017482359.mockapi.io/slider");
-        document.getElementById('carousel').innerHTML=response.data.filter((x) => x.id !== 1 )
-        .map(
-            (slide)=>
+      const response = await axios.get("https://6102d7aa79ed680017482359.mockapi.io/slider");
+      document.getElementById('carousel').innerHTML= response.data.filter((x) => x.id !== 1)
+      .map(
+          (slide)=>
+        
+          `
             
-            
-            `
+          <div class="carousel-item ">
+          <img src="${slide.imageUrl}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <p>${slide.sliderText}</p>
+          </div>
+          </div>     
               
-              <div class="carousel-item active">
-                <img src="${slide.imageUrl}" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <p>${slide.sliderText}</p>
-                </div>
-              </div>           
-            `
-        )
-        .join("");
+                      
+          `
+     
+      )
+      .join("");
         
     }catch (e) {
         console.log(`e`, e);
